@@ -3,11 +3,11 @@ package com.rony.behavioural.observer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Channel {
+public class Channel implements Subject {
     private int channelId;
     private String channelName;
     private String videoTitle;
-    private List<Subscriber> subscriberList = new ArrayList<>();
+    private List<Observer> subscriberList = new ArrayList<>();
 
     public Channel(int channelId, String channelName) {
         this.channelId = channelId;
@@ -33,11 +33,13 @@ public class Channel {
         this.channelName = channelName;
     }
 
-    public void subscribe(Subscriber subscriber){
+    @Override
+    public void subscribe(Observer subscriber){
         subscriberList.add(subscriber);
     }
 
-    public void unSubscribe(Subscriber subscriber){
+    @Override
+    public void unSubscribe(Observer subscriber){
         subscriberList.remove(subscriber);
     }
 
@@ -49,12 +51,14 @@ public class Channel {
         this.videoTitle = videoTitle;
     }
 
+    @Override
     public void notifySubscribers(){
-        for(Subscriber subscriber : subscriberList){
+        for(Observer subscriber : subscriberList){
             subscriber.update();
         }
     }
 
+    @Override
     public void upload(String title){
         this.videoTitle = title;
         notifySubscribers();

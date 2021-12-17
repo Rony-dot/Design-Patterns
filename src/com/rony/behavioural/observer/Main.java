@@ -1,5 +1,9 @@
 package com.rony.behavioural.observer;
 
+/**
+ * Observer design pattern => Behavioural design pattern
+ * Subscriber (Observer) subscribe to a Channel (Subject)
+ */
 public class Main {
     public static void main(String[] args) {
         Channel ch = new Channel();
